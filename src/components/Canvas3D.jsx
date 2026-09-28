@@ -7,11 +7,57 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const MODEL_PATH = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/models/porsche.glb`;
+
 // 3D Car Model Component
 function CarModel() {
   const modelRef = useRef();
-  // Load the GLB model from the public directory
-  const { scene } = useGLTF('./models/porsche.glb');
+  // Load the GLB model using dynamic base URL
+  const { scene } = useGLTF(MODEL_PATH);
+
+  // Apply high-end automotive materials to the model so it looks stunning and visible
+  React.useMemo(() => {
+    if (!scene) return;
+    scene.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+
+        const name = (child.name || '').toLowerCase();
+        if (name.includes('body')) {
+          child.material = new THREE.MeshPhysicalMaterial({
+            color: new THREE.Color('#E50000'), // Signature VW/Porsche Racing Red
+            metalness: 0.9,
+            roughness: 0.18,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.04,
+            reflectivity: 0.9,
+          });
+        } else if (name.includes('glass')) {
+          child.material = new THREE.MeshPhysicalMaterial({
+            color: new THREE.Color('#ffffff'),
+            metalness: 0.1,
+            roughness: 0.05,
+            transmission: 0.9,
+            transparent: true,
+            opacity: 0.55,
+          });
+        } else if (name.includes('rim') || name.includes('wheel') || name.includes('trim') || name.includes('tire')) {
+          child.material = new THREE.MeshStandardMaterial({
+            color: new THREE.Color('#1f1f1f'),
+            metalness: 0.85,
+            roughness: 0.3,
+          });
+        } else if (!child.material || (child.material.color && child.material.color.getHex() === 0)) {
+          child.material = new THREE.MeshStandardMaterial({
+            color: new THREE.Color('#2a2a2a'),
+            metalness: 0.6,
+            roughness: 0.4,
+          });
+        }
+      }
+    });
+  }, [scene]);
 
   useEffect(() => {
     if (!modelRef.current) return;
@@ -127,7 +173,7 @@ function CarModel() {
 }
 
 // Preload the model for immediate rendering
-useGLTF.preload('./models/porsche.glb');
+useGLTF.preload(MODEL_PATH);
 
 export default function Canvas3D() {
   return (
