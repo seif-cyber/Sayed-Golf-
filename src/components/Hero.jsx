@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden bg-cover bg-center select-none bg-[url('/assets/pics/background_mobile.jpg')] md:bg-[url('/assets/pics/background.jpg')]"
+      className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden bg-cover bg-center select-none" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/pics/background.jpg)` }}
     >
       {/* 
         car-slot-1: Exact anchor for the Porsche on initial load.

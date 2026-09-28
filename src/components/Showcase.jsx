@@ -29,7 +29,7 @@ export default function Showcase() {
           </FadeUp>
           
           <FadeUp delay={200}>
-          <img src="/assets/clean_images/reel_025_clean.jpg" alt="Showcase Image" className="mt-8 w-full max-w-[520px] max-h-[260px] sm:max-h-[320px] object-cover rounded-xl shadow-2xl opacity-90 border border-[#ff3535]/20" />
+          <img src={`${import.meta.env.BASE_URL}assets/clean_images/reel_025_clean.jpg`} alt="Showcase Image" className="mt-8 w-full max-w-[520px] max-h-[260px] sm:max-h-[320px] object-cover rounded-xl shadow-2xl opacity-90 border border-[#ff3535]/20" />
           </FadeUp>
 
           <div className="h-[2px] mt-8 max-w-[520px]" style={{ background: 'linear-gradient(90deg, #ff4b3a 0%, rgba(255, 75, 58, 0.35) 45%, transparent 100%)' }}></div>
