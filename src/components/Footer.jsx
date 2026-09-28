@@ -48,7 +48,7 @@ export default function Footer() {
               <Phone className="w-4 h-4 text-[#ff3535] shrink-0" />
               <a href="tel:01003326060" dir="ltr" className="font-mono text-base font-bold text-white hover:text-[#ff3535] transition-colors">0100 3326060</a>
             </div>
-            <a href="https://maps.app.goo.gl/pH74i3Qv5FaH1xeTA" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 mt-2 py-2 px-4 rounded border border-white/10 hover:border-[#ff3535]/50 hover:bg-[#ff3535]/10 text-xs font-bold text-white transition-all w-fit uppercase">
+            <a href="https://maps.app.goo.gl/vvj13a2jC58SYSpx9" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 mt-2 py-2 px-4 rounded border border-white/10 hover:border-[#ff3535]/50 hover:bg-[#ff3535]/10 text-xs font-bold text-white transition-all w-fit uppercase">
               <span>عرض على الخريطة</span>
             </a>
           </div>
