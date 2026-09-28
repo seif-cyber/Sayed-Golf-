@@ -115,7 +115,7 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="relative min-h-screen py-28 px-4 sm:px-6 lg:px-8 pointer-events-auto"
+      className="relative min-h-screen py-28 px-4 sm:px-6 lg:px-8 pointer-events-auto overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full">
         {/* Header */}

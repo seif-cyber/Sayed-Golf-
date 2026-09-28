@@ -43,7 +43,7 @@ export default function AboutUs() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center py-24 px-4 sm:px-6 lg:px-8 pointer-events-auto"
+      className="relative min-h-screen flex items-center py-24 px-4 sm:px-6 lg:px-8 pointer-events-auto overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MessageCircle, Menu, X, Wrench } from 'lucide-react';
+import { Phone, MessageCircle, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,18 +15,16 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'الرئيسية', href: '#hero' },
-    { name: 'عن المركز', href: '#about' },
-    { name: 'خدماتنا', href: '#services' },
-    { name: 'الماركات', href: '#brands' },
-    { name: 'لماذا نحن', href: '#why-us' },
-    { name: 'الفروع والتواصل', href: '#contact' },
+    { name: 'الخدمات', href: '#features' },
+    { name: 'الجودة', href: '#showcase' },
+    { name: 'احجز الآن', href: '#finale' },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 font-cairo ${
         isScrolled
-          ? 'bg-vw-black/90 backdrop-blur-md border-b border-white/10 py-3 shadow-2xl'
+          ? 'bg-[#070404]/90 backdrop-blur-md border-b border-white/10 py-3 shadow-2xl'
           : 'bg-transparent py-5'
       }`}
     >
@@ -34,18 +32,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo & Brand Name */}
           <a href="#hero" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-xl overflow-hidden border border-vw-red/40 group-hover:border-vw-red transition-all duration-300 p-0.5 bg-black">
-              <img
-                src="./images/logo.jpg"
-                alt="Sayed Golf Logo"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold tracking-wider text-white group-hover:text-vw-red transition-colors duration-200">
-                سيد جولف <span className="text-vw-red text-sm font-bold tracking-normal font-sans">SAYED GOLF</span>
+            <div className="flex flex-col text-right">
+              <span className="text-xl font-black tracking-wider text-white group-hover:text-[#ff3535] transition-colors duration-200">
+                SAYED GOLF
               </span>
-              <span className="text-xs text-vw-silver">صيانة سيارات مجموعة فولكس فاجن</span>
+              <span className="text-[10px] sm:text-xs text-gray-400 font-semibold tracking-widest uppercase">
+                مركز صيانة بورش
+              </span>
             </div>
           </a>
 
@@ -55,7 +48,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-semibold text-gray-300 hover:text-vw-red transition-colors duration-200 relative py-1 after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-0 after:h-0.5 after:bg-vw-red hover:after:w-full after:transition-all after:duration-300"
+                className="text-sm font-semibold text-[#d6d9de] hover:text-[#ff3535] transition-colors duration-200 relative py-1 uppercase tracking-widest"
               >
                 {link.name}
               </a>
@@ -66,64 +59,44 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="tel:01003326060"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-vw-gray hover:bg-vw-lightgray text-white text-sm font-bold border border-white/10 transition-all duration-200"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#4d0f0f] border border-[#ff5050]/35 text-[#ffe9e9] hover:bg-[#6b1515] text-sm font-bold transition-all duration-200 tracking-wider hover:-translate-y-px shadow-lg shadow-red-950/40"
             >
-              <Phone className="w-4 h-4 text-vw-red" />
-              <span>0100 3326060</span>
-            </a>
-            <a
-              href="https://wa.me/201003326060"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2 rounded-lg bg-vw-red hover:bg-vw-redHover text-white text-sm font-bold shadow-lg shadow-vw-red/30 transition-all duration-200 hover:scale-105 active:scale-95"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span>احجز واتساب</span>
+              <Phone className="w-4 h-4 text-[#ff3535]" />
+              <span className="tracking-widest font-bold">اتصل بنا</span>
             </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-vw-gray text-white hover:text-vw-red focus:outline-none"
+            className="md:hidden flex flex-col justify-center gap-1.5 p-3 rounded-lg bg-[#4d0f0f] border border-[#ff5050]/35 transition-colors hover:bg-[#6b1515]"
             aria-label="Toggle Navigation"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-[#ffe9e9]" /> : <Menu className="w-5 h-5 text-[#ffe9e9]" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-vw-black/95 backdrop-blur-xl border-b border-white/10 px-4 pt-4 pb-6 mt-3 space-y-3">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0a0404]/96 backdrop-blur-xl border-b border-[#ff5050]/25 px-6 pt-8 pb-10 flex flex-col items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-md text-base font-semibold text-gray-200 hover:text-white hover:bg-vw-gray/60"
+              className="text-base font-semibold text-[#d6d9de] hover:text-[#ff3535] uppercase tracking-widest"
             >
               {link.name}
             </a>
           ))}
-          <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
-            <a
-              href="tel:01003326060"
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-vw-gray text-white font-bold"
-            >
-              <Phone className="w-4 h-4 text-vw-red" />
-              <span>0100 3326060</span>
-            </a>
-            <a
-              href="https://wa.me/201003326060"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-vw-red text-white font-bold"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span>احجز عبر واتساب</span>
-            </a>
-          </div>
+          <a
+            href="tel:01003326060"
+            className="mt-2 flex items-center justify-center gap-2.5 px-6 py-3 rounded-lg bg-[#4d0f0f] border border-[#ff5050]/35 text-[#ffe9e9] font-bold tracking-widest uppercase w-full max-w-xs shadow-lg"
+          >
+            <Phone className="w-4 h-4 text-[#ff3535]" />
+            <span className="text-base font-bold">اتصل بنا</span>
+          </a>
         </div>
       )}
     </header>

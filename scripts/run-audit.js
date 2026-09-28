@@ -86,7 +86,7 @@ async function runAudit() {
       return {
         width: rect.width,
         height: rect.height,
-        glContext: !!(canvas.getContext('webgl2') || canvas.getContext('webgl'))
+        is2D: !!canvas.getContext('2d')
       };
     });
 
@@ -170,3 +170,4 @@ async function runAudit() {
 }
 
 runAudit();
+

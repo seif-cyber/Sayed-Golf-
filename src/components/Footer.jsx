@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Heart } from 'lucide-react';
+import { ArrowUp, MapPin, Phone, Facebook, Instagram, MessageCircle, Youtube } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -7,75 +7,83 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative z-10 bg-vw-black border-t border-white/10 pt-16 pb-12 px-4 sm:px-6 lg:px-8 pointer-events-auto">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          {/* Col 1: About */}
-          <div className="md:col-span-2 space-y-4">
+    <footer className="relative z-50 bg-[#070404] border-t border-[#ff5050]/20 pt-16 pb-12 px-6 lg:px-12 font-cairo pointer-events-auto">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-6 mb-12 text-right">
+          
+          {/* Col 1: About (Span 4) */}
+          <div className="md:col-span-4 flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg overflow-hidden border border-vw-red/40 p-0.5 bg-black">
-                <img
-                  src="./images/logo.jpg"
-                  alt="Sayed Golf"
-                  className="w-full h-full object-cover rounded"
-                />
-              </div>
-              <span className="text-xl font-extrabold text-white tracking-wide">
-                مركز <span className="text-vw-red">سيد جولف</span>
+              <span className="text-xl font-black text-white tracking-widest uppercase font-mono">
+                SAYED GOLF
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-md">
-              الصرح الهندسي الرائد في مصر المتخصص في صيانة وبرمجة وإصلاح كافة أعطال سيارات مجموعة فولكس فاجن (VW, Audi, SEAT, Škoda, Porsche, Cupra) مع توفير قطع الغيار الأصلية والضمان الشامل.
+            <p className="text-sm text-[#9aa0a8] leading-relaxed max-w-md">
+              الخيار الأول لصيانة سيارات بورش وفولكس فاجن. نجمع بين أحدث التقنيات وأفضل المهندسين لتقديم خدمة تليق بسيارتك الفارهة.
             </p>
-          </div>
-
-          {/* Col 2: Quick Links */}
-          <div>
-            <h4 className="text-sm font-bold text-white mb-4">أقسام الموقع</h4>
-            <ul className="space-y-2 text-xs sm:text-sm text-gray-400">
-              <li><a href="#hero" className="hover:text-vw-red transition-colors">الرئيسية</a></li>
-              <li><a href="#about" className="hover:text-vw-red transition-colors">نبذة عن المركز</a></li>
-              <li><a href="#services" className="hover:text-vw-red transition-colors">خدمات الصيانة</a></li>
-              <li><a href="#brands" className="hover:text-vw-red transition-colors">الماركات الألمانية</a></li>
-              <li><a href="#why-us" className="hover:text-vw-red transition-colors">لماذا سيد جولف؟</a></li>
-              <li><a href="#contact" className="hover:text-vw-red transition-colors">الفروع والتواصل</a></li>
-            </ul>
-          </div>
-
-          {/* Col 3: Branches & Hotline */}
-          <div>
-            <h4 className="text-sm font-bold text-white mb-4">خدمة العملاء والحجز</h4>
-            <div className="space-y-3 text-xs sm:text-sm text-gray-400">
-              <p>
-                <strong className="text-white">الهاتف الموحد / واتساب:</strong><br />
-                <a href="tel:01003326060" className="text-vw-red font-bold font-mono">0100 3326060</a>
-              </p>
-              <p>
-                <strong className="text-white">فرع طريق السويس:</strong><br />
-                <a href="tel:01024447800" className="text-vw-red font-bold font-mono">01024447800</a>
-              </p>
-              <p className="text-xs text-gray-500 pt-1">
-                ساعات العمل: 10 ص - 10 م يومياً (عدا الأحد)
-              </p>
+            <div className="flex items-center gap-3 mt-4">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#ff3535] hover:scale-110 transition-all">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#ff3535] hover:scale-110 transition-all">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#ff3535] hover:scale-110 transition-all">
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a href="https://wa.me/201003326060" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#25D366] hover:scale-110 transition-all">
+                <MessageCircle className="w-5 h-5" />
+              </a>
             </div>
           </div>
+
+          {/* Col 2: Joseph Tito Branch (Span 4) */}
+          <div className="md:col-span-4 flex flex-col gap-4">
+            <h4 className="text-sm font-bold text-white tracking-wider uppercase mb-2 border-b border-white/10 pb-3">فرع جوزيف تيتو</h4>
+            <div className="flex gap-3 text-[#9aa0a8] text-sm">
+              <MapPin className="w-5 h-5 text-[#ff3535] shrink-0" />
+              <p className="leading-relaxed">شارع ١٠ العرايشية - الهايكستب - النزهة الجديدة</p>
+            </div>
+            <div className="flex items-center gap-3 text-[#9aa0a8] text-sm">
+              <Phone className="w-4 h-4 text-[#ff3535] shrink-0" />
+              <a href="tel:01003326060" dir="ltr" className="font-mono text-base font-bold text-white hover:text-[#ff3535] transition-colors">0100 3326060</a>
+            </div>
+            <a href="https://maps.app.goo.gl/pH74i3Qv5FaH1xeTA" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 mt-2 py-2 px-4 rounded border border-white/10 hover:border-[#ff3535]/50 hover:bg-[#ff3535]/10 text-xs font-bold text-white transition-all w-fit uppercase">
+              <span>عرض على الخريطة</span>
+            </a>
+          </div>
+
+          {/* Col 3: Suez Road Branch (Span 4) */}
+          <div className="md:col-span-4 flex flex-col gap-4">
+            <h4 className="text-sm font-bold text-white tracking-wider uppercase mb-2 border-b border-white/10 pb-3">فرع طريق السويس</h4>
+            <div className="flex gap-3 text-[#9aa0a8] text-sm">
+              <MapPin className="w-5 h-5 text-[#ff3535] shrink-0" />
+              <p className="leading-relaxed">كارتة مدينتي - طريق السويس</p>
+            </div>
+            <div className="flex items-center gap-3 text-[#9aa0a8] text-sm">
+              <Phone className="w-4 h-4 text-[#ff3535] shrink-0" />
+              <a href="tel:01024447800" dir="ltr" className="font-mono text-base font-bold text-white hover:text-[#ff3535] transition-colors">0102 444 7800</a>
+            </div>
+            <a href="https://maps.app.goo.gl/pH74i3Qv5FaH1xeTA" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 mt-2 py-2 px-4 rounded border border-white/10 hover:border-[#ff3535]/50 hover:bg-[#ff3535]/10 text-xs font-bold text-white transition-all w-fit uppercase">
+              <span>عرض على الخريطة</span>
+            </a>
+          </div>
+
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <div>
-            <span>جميع الحقوق محفوظة © {new Date().getFullYear()} لمركز سيد جولف (Sayed Golf).</span>
+        <div className="pt-8 border-t border-[#ff5050]/10 flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-[#9aa0a8]">
+          <div className="text-center sm:text-right">
+            <span>جميع الحقوق محفوظة &copy; {new Date().getFullYear()} - SAYED GOLF.</span>
           </div>
 
-          <div className="flex items-center gap-6">
-            <button
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-vw-gray hover:bg-vw-lightgray text-white text-xs font-bold transition-colors"
-            >
-              <span>العودة للأعلى</span>
-              <ArrowUp className="w-3.5 h-3.5 text-vw-red" />
-            </button>
-          </div>
+          <button
+            onClick={scrollToTop}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-[#ff3535] border border-white/10 hover:border-transparent text-white text-xs font-bold transition-all uppercase tracking-widest hover:-translate-y-1"
+          >
+            <span>للأعلى</span>
+            <ArrowUp className="w-4 h-4" />
+          </button>
         </div>
       </div>
     </footer>

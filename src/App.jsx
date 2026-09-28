@@ -1,40 +1,36 @@
 import React from 'react';
 import Navbar from './components/Navbar';
-import Canvas3D from './components/Canvas3D';
+import CanvasSequence from './components/CanvasSequence';
 import Hero from './components/Hero';
-import AboutUs from './components/AboutUs';
-import Services from './components/Services';
-import Brands from './components/Brands';
-import WhyUs from './components/WhyUs';
-import Contact from './components/Contact';
+import Features from './components/Features';
+import Showcase from './components/Showcase';
+import Finale from './components/Finale';
 import Footer from './components/Footer';
 import { MessageCircle } from 'lucide-react';
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-vw-black text-white selection:bg-vw-red selection:text-white">
-      {/* Fixed 3D Canvas Layer in Background */}
-      <Canvas3D />
-
+    <div className="relative min-h-screen bg-[#070404] text-white selection:bg-vw-red selection:text-white" dir="rtl">
       {/* Floating Header */}
       <Navbar />
 
       {/* Scrollytelling Container */}
-      <main id="scrolly-container" className="relative z-10">
+      <main id="scrolly-container" className="relative overflow-x-clip font-cairo">
+        {/* Fixed HTML5 Canvas Image Sequence */}
+        <CanvasSequence />
+        
         <Hero />
-        <AboutUs />
-        <Services />
-        <Brands />
-        <WhyUs />
-        <Contact />
+        <Features />
+        <Showcase />
+        <Finale />
       </main>
 
       {/* Footer */}
       <Footer />
 
-      {/* Floating WhatsApp Quick Action Button */}
+      {/* WhatsApp Action */}
       <a
-        href="https://wa.me/201003326060?text=مرحبا،%20أود%20الاستفسار%20عن%20صيانة%20سيارتي%20في%20مركز%20سيد%20جولف"
+        href="https://wa.me/201003326060?text=مرحباً أريد الإستفسار عن خدمات سيد جولف"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 left-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group"

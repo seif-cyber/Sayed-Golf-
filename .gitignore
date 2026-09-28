@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Scratch & test screenshots
+scratch/
+test-results/
+*.png
+!public/**/*.png
+
