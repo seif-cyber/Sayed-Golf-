@@ -1,15 +1,35 @@
 import React, { useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, Environment, ContactShadows } from '@react-three/drei';
+import { useGLTF, Environment, ContactShadows, Html, useProgress } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+const BASE = import.meta.env.DEV ? '' : import.meta.env.BASE_URL.replace(/\/$/, '');
 const MODEL_PATH = `${BASE}/models/porsche.glb`;
 const ENV_PATH = `${BASE}/models/city.hdr`;
+
+// Elegant Loading Spinner for 3D Assets
+function CanvasLoader() {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <div className="flex flex-col items-center justify-center gap-3 p-5 rounded-2xl bg-black/85 backdrop-blur-lg border border-white/10 text-center select-none shadow-2xl min-w-[180px]">
+        <div className="w-10 h-10 border-3 border-vw-red border-t-transparent rounded-full animate-spin shadow-lg shadow-vw-red/40" />
+        <div className="flex flex-col gap-1">
+          <span className="text-sm font-black text-white font-sans tracking-wider">
+            {Math.round(progress)}%
+          </span>
+          <span className="text-xs font-medium text-gray-300">
+            جاري تجهيز المجسم...
+          </span>
+        </div>
+      </div>
+    </Html>
+  );
+}
 
 // Dynamic responsive camera handler
 function ResponsiveCamera() {
@@ -222,7 +242,7 @@ export default function Canvas3D() {
         />
 
         {/* Local Environment Map & Ground Shadow */}
-        <Suspense fallback={null}>
+        <Suspense fallback={<CanvasLoader />}>
           <Environment files={ENV_PATH} />
           <CarModel />
           <ContactShadows
