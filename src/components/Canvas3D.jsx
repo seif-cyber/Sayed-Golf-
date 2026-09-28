@@ -1,13 +1,27 @@
 import React, { useRef, useEffect, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, Environment, ContactShadows, Float } from '@react-three/drei';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useGLTF, Environment, ContactShadows } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MODEL_PATH = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/models/porsche.glb`;
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+const MODEL_PATH = `${BASE}/models/porsche.glb`;
+const ENV_PATH = `${BASE}/models/city.hdr`;
+
+// Dynamic responsive camera handler
+function ResponsiveCamera() {
+  const { camera, size } = useThree();
+  useEffect(() => {
+    const isMobile = size.width < 768;
+    camera.position.z = isMobile ? 6.5 : 4.3;
+    camera.position.y = isMobile ? 0.8 : 1.15;
+    camera.updateProjectionMatrix();
+  }, [size.width, size.height, camera]);
+  return null;
+}
 
 // 3D Car Model Component
 function CarModel() {
@@ -15,7 +29,7 @@ function CarModel() {
   // Load the GLB model using dynamic base URL
   const { scene } = useGLTF(MODEL_PATH);
 
-  // Apply high-end automotive materials to the model so it looks stunning and visible
+  // Apply high-end automotive materials to the model
   React.useMemo(() => {
     if (!scene) return;
     scene.traverse((child) => {
@@ -27,8 +41,8 @@ function CarModel() {
         if (name.includes('body')) {
           child.material = new THREE.MeshPhysicalMaterial({
             color: new THREE.Color('#E50000'), // Signature VW/Porsche Racing Red
-            metalness: 0.9,
-            roughness: 0.18,
+            metalness: 0.85,
+            roughness: 0.15,
             clearcoat: 1.0,
             clearcoatRoughness: 0.04,
             reflectivity: 0.9,
@@ -62,9 +76,8 @@ function CarModel() {
   useEffect(() => {
     if (!modelRef.current) return;
 
-    // Center and adjust initial scale and position
     const car = modelRef.current;
-    car.position.set(0, -0.6, 0);
+    car.position.set(0, -0.65, 0);
     car.rotation.set(0, Math.PI * 0.25, 0); // initial 45 degree angle
 
     // ScrollTrigger timeline for 3D scrollytelling
@@ -88,8 +101,8 @@ function CarModel() {
       }, 0)
       .to(car.position, {
         x: -1.2,
-        y: -0.5,
-        z: -0.5,
+        y: -0.55,
+        z: -0.4,
         duration: 2,
         ease: 'power2.inOut',
       }, 0)
@@ -126,14 +139,14 @@ function CarModel() {
       }, 4)
       .to(car.position, {
         x: 0,
-        y: -0.4,
+        y: -0.45,
         z: 0.2,
         duration: 2.5,
       }, 4)
       .to(car.scale, {
-        x: 1.2,
-        y: 1.2,
-        z: 1.2,
+        x: 1.18,
+        y: 1.18,
+        z: 1.18,
         duration: 2.5,
       }, 4);
 
@@ -167,7 +180,7 @@ function CarModel() {
     <primitive
       ref={modelRef}
       object={scene}
-      scale={1.15}
+      scale={1.12}
     />
   );
 }
@@ -180,38 +193,40 @@ export default function Canvas3D() {
     <div className="fixed inset-0 z-0 pointer-events-none w-full h-full">
       <Canvas
         shadows
-        camera={{ position: [0, 1.2, 4.2], fov: 42 }}
+        camera={{ position: [0, 1.15, 4.3], fov: 42 }}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       >
-        {/* Cinematic Ambient and Directional Lights */}
-        <ambientLight intensity={0.8} />
+        <ResponsiveCamera />
+
+        {/* Cinematic Studio Automotive Lighting */}
+        <ambientLight intensity={0.9} />
         <directionalLight
-          position={[5, 8, 4]}
-          intensity={2.2}
+          position={[6, 10, 5]}
+          intensity={2.4}
           color="#ffffff"
           castShadow
           shadow-mapSize={1024}
         />
         <directionalLight
-          position={[-6, 4, -3]}
-          intensity={1.5}
-          color="#E50000" // Red ambient rim light reflecting VW/Porsche theme
-        />
-        <pointLight position={[0, 3, 2]} intensity={1.2} color="#ffffff" />
-        <spotLight
-          position={[0, 6, 0]}
+          position={[-6, 4, -4]}
           intensity={1.8}
-          angle={0.6}
+          color="#E50000" // Signature Red accent rim light
+        />
+        <pointLight position={[0, 4, 3]} intensity={1.5} color="#ffffff" />
+        <spotLight
+          position={[0, 8, 2]}
+          intensity={1.8}
+          angle={0.7}
           penumbra={0.8}
           color="#ffffff"
         />
 
-        {/* Environment preset for hyper-realistic metallic reflections */}
+        {/* Local Environment Map & Ground Shadow */}
         <Suspense fallback={null}>
-          <Environment preset="city" />
+          <Environment files={ENV_PATH} />
           <CarModel />
           <ContactShadows
-            position={[0, -0.68, 0]}
+            position={[0, -0.75, 0]}
             opacity={0.85}
             scale={12}
             blur={2.4}
