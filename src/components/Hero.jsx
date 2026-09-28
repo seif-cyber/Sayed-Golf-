@@ -5,8 +5,18 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden bg-cover bg-center select-none" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/pics/background.jpg)` }}
+      className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden select-none"
     >
+      {/* Desktop Background */}
+      <div 
+        className="absolute inset-0 hidden md:block bg-cover bg-center -z-10" 
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/pics/background.jpg)` }}
+      />
+      {/* Mobile Background */}
+      <div 
+        className="absolute inset-0 block md:hidden bg-cover bg-center -z-10" 
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/pics/background-mobile.jpg)` }}
+      />
       {/* 
         car-slot-1: Exact anchor for the Porsche on initial load.
         Positioned on the showroom floor right between the white Golf and red Seat Leon.
