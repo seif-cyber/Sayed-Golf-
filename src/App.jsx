@@ -6,6 +6,7 @@ import Features from './components/Features';
 import Showcase from './components/Showcase';
 import Finale from './components/Finale';
 import Footer from './components/Footer';
+import ScrollToTopProgress from './components/ScrollToTopProgress';
 import { MessageCircle } from 'lucide-react';
 
 export default function App() {
@@ -27,6 +28,9 @@ export default function App() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating Scroll To Top with Circular Progress */}
+      <ScrollToTopProgress />
 
       {/* WhatsApp Action */}
       <a
