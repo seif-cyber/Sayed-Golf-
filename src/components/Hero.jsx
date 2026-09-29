@@ -70,7 +70,7 @@ export default function Hero() {
       */}
       <div
         id="car-slot-1"
-        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none top-[63%] sm:top-[65%] md:top-[76%] w-[88vw] sm:w-[75vw] md:w-[min(1100px,80vw)] h-[140px] md:h-[280px]"
+        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none top-[60%] sm:top-[60%] md:top-[68%] w-[100vw] sm:w-[90vw] md:w-[min(1200px,85vw)] h-[160px] md:h-[280px]"
       />
 
       {/* Top spacer for navbar */}
