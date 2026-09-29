@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden select-none"
+      className="relative z-0 w-full h-screen flex flex-col items-center justify-between overflow-hidden select-none"
     >
       {/* Desktop Background */}
       <div 
