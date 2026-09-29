@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
+import { SiVolkswagen, SiAudi, SiSeat, SiSkoda, SiPorsche } from 'react-icons/si';
 
 export default function Hero() {
   return (
@@ -20,32 +21,45 @@ export default function Hero() {
 
       {/* 
         Illuminated Dealership Signboard Overlay 
-        Positioned over the illuminated lightbox in both desktop and mobile backgrounds
       */}
       <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-[34%] md:top-[29%] w-[68vw] sm:w-[58vw] md:w-[480px] lg:w-[540px] pointer-events-none flex flex-col items-center justify-center text-center p-1 sm:p-2 z-10">
         <div className="flex items-center justify-center gap-1.5 sm:gap-2.5 mb-1 sm:mb-1.5">
-          <span className="font-black text-[13px] sm:text-base md:text-xl lg:text-2xl tracking-wider text-[#111113] font-sans uppercase drop-shadow-sm">
-            SAYED GOLF
-          </span>
-          <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#ff3535] shadow-sm shadow-red-500/50" />
+          {/* Arabic on the right (first in DOM since dir="rtl"), English on the left */}
           <span className="font-black text-[13px] sm:text-base md:text-xl lg:text-2xl text-[#111113] font-cairo drop-shadow-sm">
             سيد جولف
+          </span>
+          <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#ff3535] shadow-sm shadow-red-500/50" />
+          <span className="font-black text-[13px] sm:text-base md:text-xl lg:text-2xl tracking-wider text-[#111113] font-sans uppercase drop-shadow-sm" dir="ltr">
+            SAYED GOLF
           </span>
         </div>
         <div className="text-[8.5px] sm:text-[11px] md:text-xs lg:text-sm font-bold text-[#1a1a20] tracking-tight font-cairo bg-black/5 px-2.5 sm:px-3 py-0.5 rounded-full border border-black/10 backdrop-blur-[1px] whitespace-nowrap">
           <span className="sm:hidden">متخصصون في صيانة مجموعة فولكس فاجن</span>
           <span className="hidden sm:inline">متخصصون في صيانة مجموعة فولكس فاجن (VW Group)</span>
         </div>
-        <div className="mt-1 sm:mt-1.5 flex items-center justify-center gap-1.5 sm:gap-2 text-[7.5px] sm:text-[9.5px] md:text-[11px] font-black text-[#2e2e36] tracking-widest uppercase">
-          <span>VW</span>
-          <span>•</span>
-          <span>AUDI</span>
-          <span>•</span>
-          <span>SEAT</span>
-          <span>•</span>
-          <span>SKODA</span>
-          <span>•</span>
-          <span>PORSCHE</span>
+        
+        {/* Brand Logos */}
+        <div dir="ltr" className="mt-1.5 sm:mt-2 md:mt-2.5 flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-3 md:gap-x-4 gap-y-1 text-[7px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-black text-[#1e1e24] tracking-widest uppercase">
+          <div className="flex items-center gap-0.5 sm:gap-1">
+            <SiVolkswagen className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4" />
+            <span>VW</span>
+          </div>
+          <div className="flex items-center gap-0.5 sm:gap-1">
+            <SiAudi className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4" />
+            <span>AUDI</span>
+          </div>
+          <div className="flex items-center gap-0.5 sm:gap-1">
+            <SiSeat className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4" />
+            <span>SEAT</span>
+          </div>
+          <div className="flex items-center gap-0.5 sm:gap-1">
+            <SiSkoda className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4" />
+            <span>SKODA</span>
+          </div>
+          <div className="flex items-center gap-0.5 sm:gap-1">
+            <SiPorsche className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4" />
+            <span>PORSCHE</span>
+          </div>
         </div>
       </div>
 
