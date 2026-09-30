@@ -82,23 +82,26 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0a0404]/96 backdrop-blur-xl border-b border-[#ff5050]/25 px-6 pt-8 pb-10 flex flex-col items-center gap-7">
+        <div 
+          className="md:hidden absolute top-full left-0 right-0 backdrop-blur-2xl border-b border-white/15 px-6 pt-6 pb-8 flex flex-col items-center gap-3.5 shadow-2xl z-[120]"
+          style={{ backgroundColor: 'rgba(11, 12, 16, 0.98)' }}
+        >
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-semibold text-[#d6d9de] hover:text-[#ff3535] uppercase tracking-widest"
+              className="w-full text-center py-3 px-4 rounded-xl text-base font-bold text-white hover:text-white bg-white/5 hover:bg-[#ff3535] active:bg-[#ff3535]/80 transition-all border border-white/10 hover:border-transparent tracking-wider font-cairo shadow-sm"
             >
               {link.name}
             </a>
           ))}
           <a
             href="tel:01003326060"
-            className="mt-2 flex items-center justify-center gap-2.5 px-6 py-3 rounded-lg bg-[#4d0f0f] border border-[#ff5050]/35 text-[#ffe9e9] font-bold tracking-widest uppercase w-full max-w-xs shadow-lg"
+            className="mt-2 flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#ff3535] hover:bg-[#e02b2b] text-white font-bold tracking-wider uppercase w-full max-w-xs shadow-lg shadow-red-950/60 active:scale-95 transition-all text-base"
           >
-            <Phone className="w-4 h-4 text-[#ff3535]" />
-            <span className="text-base font-bold">اتصل بنا</span>
+            <Phone className="w-5 h-5 text-white" />
+            <span className="font-bold">اتصل بنا</span>
           </a>
         </div>
       )}
