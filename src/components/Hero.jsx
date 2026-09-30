@@ -1,8 +1,6 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { SiVolkswagen, SiAudi, SiSeat, SiSkoda, SiPorsche } from 'react-icons/si';
-import CarSlotController from './CarSlotController';
-
 export default function Hero() {
   return (
     <section
@@ -22,13 +20,21 @@ export default function Hero() {
 
       {/* 
         car-slot-1: Exact anchor for the Porsche on initial load.
-        Positioned directly on the concrete/asphalt driveway right between the black VW (left) and red VW (right).
-        Sized to match the real cars in the photo.
+        Positioned directly on the concrete/asphalt driveway with user-tuned coordinates.
+        Includes a soft realistic ground contact shadow on the asphalt.
       */}
       <div
         id="car-slot-1"
-        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none top-[84%] sm:top-[85%] md:top-[87%] w-[55vh] md:w-[min(950px,68vw)] h-[160px] md:h-[240px]"
-      />
+        className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none top-[72%] left-[46%] w-[83vh] h-[30vh] md:top-[81.5%] md:left-[48%] md:w-[135vh] md:h-[48vh]"
+      >
+        {/* Realistic ground contact shadow on the asphalt */}
+        <div 
+          className="absolute -bottom-[2%] left-1/2 -translate-x-1/2 w-[74%] h-[26%] rounded-[100%] pointer-events-none opacity-90 blur-[10px] md:blur-[18px]"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 45%, transparent 75%)'
+          }}
+        />
+      </div>
 
       {/* Top spacer for navbar */}
       <div className="pt-24" />
@@ -43,9 +49,6 @@ export default function Hero() {
           <ChevronDown className="w-3.5 h-3.5 animate-bounce text-[#ff3535]" />
         </a>
       </div>
-
-      {/* Temporary live controller for car position and size */}
-      <CarSlotController />
     </section>
   );
 }
