@@ -8,14 +8,14 @@ export default function Hero() {
       id="hero"
       className="relative z-0 w-full h-screen flex flex-col items-center justify-between overflow-hidden select-none"
     >
-      {/* Desktop Background */}
+      {/* Desktop Background - 100% visible, never cropped */}
       <div 
-        className="absolute inset-0 hidden md:block bg-cover bg-bottom -z-10" 
+        className="absolute inset-0 hidden md:block bg-[length:100%_100%] bg-center bg-no-repeat -z-10" 
         style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/pics/background.jpg)` }}
       />
-      {/* Mobile Background */}
+      {/* Mobile Background - 100% visible, never cropped */}
       <div 
-        className="absolute inset-0 block md:hidden bg-cover bg-bottom -z-10" 
+        className="absolute inset-0 block md:hidden bg-[length:100%_100%] bg-center bg-no-repeat -z-10" 
         style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/pics/background-mobile.jpg)` }}
       />
 
