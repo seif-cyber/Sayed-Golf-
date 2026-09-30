@@ -24,19 +24,19 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 font-cairo ${
         isScrolled
-          ? 'bg-[#070404]/90 backdrop-blur-md border-b border-white/10 py-3 shadow-2xl'
-          : 'bg-transparent py-5'
+          ? 'bg-[#070404]/95 backdrop-blur-md border-b border-[#ff3535]/20 py-3 shadow-2xl'
+          : 'bg-gradient-to-b from-[#0a0404]/80 via-[#0a0404]/40 to-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo & Brand Name */}
           <a href="#hero" className="flex items-center gap-3 group">
-            <div className="flex flex-col text-right">
+            <div className="flex flex-col text-right drop-shadow-md">
               <span className="text-xl font-black tracking-wider text-white group-hover:text-[#ff3535] transition-colors duration-200">
                 SAYED GOLF
               </span>
-              <span className="text-[10px] sm:text-xs text-gray-400 font-semibold tracking-widest uppercase">
+              <span className="text-[10px] sm:text-xs text-gray-200 font-semibold tracking-widest uppercase">
                 مركز صيانة بورش
               </span>
             </div>
@@ -48,7 +48,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-semibold text-[#d6d9de] hover:text-[#ff3535] transition-colors duration-200 relative py-1 uppercase tracking-widest"
+                className="text-sm font-bold text-white hover:text-[#ff3535] transition-colors duration-200 relative py-1 uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
               >
                 {link.name}
               </a>
