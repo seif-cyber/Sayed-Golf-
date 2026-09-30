@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { SiVolkswagen, SiAudi, SiSeat, SiSkoda, SiPorsche } from 'react-icons/si';
+import CarSlotController from './CarSlotController';
 
 export default function Hero() {
   return (
@@ -42,6 +43,9 @@ export default function Hero() {
           <ChevronDown className="w-3.5 h-3.5 animate-bounce text-[#ff3535]" />
         </a>
       </div>
+
+      {/* Temporary live controller for car position and size */}
+      <CarSlotController />
     </section>
   );
 }
