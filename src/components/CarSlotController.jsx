@@ -133,14 +133,14 @@ export default function CarSlotController() {
               <input
                 type="range"
                 min="20"
-                max="100"
+                max="250"
                 step="1"
                 value={widthVh}
                 onChange={(e) => setWidthVh(parseInt(e.target.value))}
                 className="w-full accent-[#ff3535] cursor-pointer h-1.5 bg-white/20 rounded-lg"
               />
               <button
-                onClick={() => setWidthVh((prev) => Math.min(100, prev + 1))}
+                onClick={() => setWidthVh((prev) => Math.min(250, prev + 1))}
                 className="w-7 h-7 flex items-center justify-center rounded bg-white/10 active:bg-white/20 text-xs font-bold"
               >
                 +
