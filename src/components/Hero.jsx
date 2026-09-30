@@ -10,23 +10,23 @@ export default function Hero() {
     >
       {/* Desktop Background */}
       <div 
-        className="absolute inset-0 hidden md:block bg-cover bg-center -z-10" 
+        className="absolute inset-0 hidden md:block bg-cover bg-bottom -z-10" 
         style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/pics/background.jpg)` }}
       />
       {/* Mobile Background */}
       <div 
-        className="absolute inset-0 block md:hidden bg-cover bg-center -z-10" 
+        className="absolute inset-0 block md:hidden bg-cover bg-bottom -z-10" 
         style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/pics/background-mobile.jpg)` }}
       />
 
       {/* 
         car-slot-1: Exact anchor for the Porsche on initial load.
-        Positioned directly on the concrete driveway right between the black VW (left) and red VW (right).
+        Positioned directly on the concrete/asphalt driveway right between the black VW (left) and red VW (right).
         Sized to match the real cars in the photo.
       */}
       <div
         id="car-slot-1"
-        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none top-[75%] md:top-[80%] w-[55vh] md:w-[min(1000px,70vw)] h-[20vh] md:h-[280px]"
+        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none top-[84%] sm:top-[85%] md:top-[87%] w-[55vh] md:w-[min(950px,68vw)] h-[160px] md:h-[240px]"
       />
 
       {/* Top spacer for navbar */}

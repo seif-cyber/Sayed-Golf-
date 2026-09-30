@@ -24,44 +24,47 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 font-cairo ${
         isScrolled
-          ? 'bg-[#070404]/95 backdrop-blur-md border-b border-[#ff3535]/20 py-3 shadow-2xl'
-          : 'bg-gradient-to-b from-[#0a0404]/80 via-[#0a0404]/40 to-transparent py-6'
+          ? 'bg-[#070404]/95 backdrop-blur-md border-b border-white/10 py-3 shadow-2xl'
+          : 'bg-gradient-to-b from-black/85 via-black/40 to-transparent py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo & Brand Name */}
-          <a href="#hero" className="flex items-center gap-3 group">
-            <div className="flex flex-col text-right drop-shadow-md">
-              <span className="text-xl font-black tracking-wider text-white group-hover:text-[#ff3535] transition-colors duration-200">
-                SAYED GOLF
-              </span>
-              <span className="text-[10px] sm:text-xs text-gray-200 font-semibold tracking-widest uppercase">
-                مركز صيانة بورش
-              </span>
-            </div>
-          </a>
+          {/* Right Group: Logo & Navigation Links together */}
+          <div className="flex items-center gap-6 lg:gap-10">
+            {/* Logo & Brand Name */}
+            <a href="#hero" className="flex items-center gap-3 group">
+              <div className="flex flex-col text-right">
+                <span className="text-xl sm:text-2xl font-black tracking-wider text-white group-hover:text-[#ff3535] transition-colors duration-200 drop-shadow-md">
+                  SAYED GOLF
+                </span>
+                <span className="text-[10px] sm:text-xs text-gray-300 font-bold tracking-widest uppercase drop-shadow-sm">
+                  مركز صيانة بورش
+                </span>
+              </div>
+            </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-bold text-white hover:text-[#ff3535] transition-colors duration-200 relative py-1 uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
+            {/* Desktop Navigation Links - Aligned right next to the logo */}
+            <nav className="hidden md:flex items-center gap-2 lg:gap-3">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="px-3.5 py-1 rounded-full text-xs lg:text-sm font-bold text-white/90 hover:text-white bg-black/35 hover:bg-[#ff3535]/80 border border-white/15 hover:border-transparent transition-all duration-200 backdrop-blur-md shadow-sm uppercase tracking-wider"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </nav>
+          </div>
 
-          {/* Direct CTA Buttons */}
+          {/* Left Group: Direct CTA Button */}
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="tel:01003326060"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#4d0f0f] border border-[#ff5050]/35 text-[#ffe9e9] hover:bg-[#6b1515] text-sm font-bold transition-all duration-200 tracking-wider hover:-translate-y-px shadow-lg shadow-red-950/40"
+              className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#ff3535] hover:bg-[#e02b2b] text-white text-sm font-bold transition-all duration-200 tracking-wider hover:-translate-y-px shadow-lg shadow-red-950/50"
             >
-              <Phone className="w-4 h-4 text-[#ff3535]" />
+              <Phone className="w-4 h-4 text-white" />
               <span className="tracking-widest font-bold">اتصل بنا</span>
             </a>
           </div>
