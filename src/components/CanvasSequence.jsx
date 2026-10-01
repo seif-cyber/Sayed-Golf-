@@ -87,12 +87,10 @@ export default function CanvasSequence() {
       const slot1 = document.getElementById('car-slot-1');
       const slot2 = document.getElementById('car-slot-2');
       const slot3 = document.getElementById('car-slot-3');
-      const slot4 = document.getElementById('car-slot-4');
 
       const featuresSection = document.getElementById('features');
       const showcaseSection = document.getElementById('showcase');
       const gallerySection = document.getElementById('gallery');
-      const finaleSection = document.getElementById('finale');
 
       // Progress calculations between sections
       const calcProgress = (el) => {
@@ -104,7 +102,6 @@ export default function CanvasSequence() {
       const p1 = smoothstep(calcProgress(featuresSection));
       const p2 = smoothstep(calcProgress(showcaseSection));
       const pGallery = smoothstep(calcProgress(gallerySection));
-      const p3 = smoothstep(calcProgress(finaleSection));
 
       // Calculate target screen position and width by blending slot rects
       let targetX = vw / 2;
@@ -114,7 +111,6 @@ export default function CanvasSequence() {
       const r1 = slot1?.getBoundingClientRect();
       const r2 = slot2?.getBoundingClientRect();
       const r3 = slot3?.getBoundingClientRect();
-      const r4 = slot4?.getBoundingClientRect();
 
       let targetW = r1 ? r1.width : Math.min(vw * 0.55, 780);
 
@@ -148,17 +144,8 @@ export default function CanvasSequence() {
         targetW = lerp(targetW, r3.width * sideScale, p2);
       }
 
-      if (r4 && p3 > 0) {
-        const s4x = r4.left + r4.width / 2;
-        const s4y = r4.top + r4.height / 2;
-        targetX = lerp(targetX, s4x, p3);
-        targetY = lerp(targetY, s4y, p3);
-        const frontScale = isMobile ? 1.4 : 1.6;
-        targetW = lerp(targetW, r4.width * frontScale, p3);
-      }
-
       // Never let the car sink off the bottom edge during scroll transitions
-      if (scrollY > 15 && p3 < 0.6) {
+      if (scrollY > 15) {
         targetY = clamp(targetY, vh * 0.35, vh * 0.52);
       }
 
@@ -300,14 +287,9 @@ export default function CanvasSequence() {
         }
 
         let carAlpha = 1;
-        if (pGallery > 0.05 && p3 < 0.8) {
-          if (p3 > 0.15) {
-            // Fading back in for finale
-            carAlpha = clamp((p3 - 0.15) / 0.5, 0, 1);
-          } else {
-            // Fading out as user enters gallery
-            carAlpha = clamp(1 - (pGallery - 0.05) / 0.35, 0, 1);
-          }
+        if (pGallery > 0.05) {
+          // Fading out as user enters gallery and remaining hidden through contact/footer
+          carAlpha = clamp(1 - (pGallery - 0.05) / 0.35, 0, 1);
         }
 
         ctx.globalAlpha = carAlpha;

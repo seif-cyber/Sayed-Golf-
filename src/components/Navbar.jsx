@@ -19,7 +19,6 @@ export default function Navbar() {
     { name: 'الجودة', href: '#showcase' },
     { name: 'المعرض', href: '#gallery' },
     { name: 'فروعنا', href: '#contact' },
-    { name: 'احجز الآن', href: '#finale' },
   ];
 
   return (
