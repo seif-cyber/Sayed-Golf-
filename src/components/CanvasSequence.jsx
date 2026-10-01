@@ -199,6 +199,106 @@ export default function CanvasSequence() {
         const drawX = st.cx * dpr - drawW / 2;
         const drawY = st.cy * dpr - drawH / 2;
 
+        // Ground shadow on Hero section (when workshop background is behind car)
+        const heroShadowAlpha = clamp(1 - (scrollY / (vh * 0.35)), 0, 1) * (1 - p1);
+        if (heroShadowAlpha > 0.01 && frameIdx < 5) {
+          ctx.save();
+          ctx.globalAlpha = heroShadowAlpha;
+
+          const toCanvas = (px, py) => ({
+            x: drawX + (px / 1600) * drawW,
+            y: drawY + (py / 900) * drawH
+          });
+
+          const drawEllipseShadow = (cx, cy, rx, ry, angle, c0, c1, stop1 = 0.5) => {
+            ctx.save();
+            ctx.translate(cx, cy);
+            if (angle) ctx.rotate(angle);
+            ctx.scale(rx, ry);
+            const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+            grad.addColorStop(0, c0);
+            grad.addColorStop(stop1, c1);
+            grad.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(0, 0, 1, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          };
+
+          // 1. Broad soft ambient penumbra around entire base of car
+          const pAmbient = toCanvas(810, 615);
+          drawEllipseShadow(
+            pAmbient.x, pAmbient.y,
+            drawW * 0.32, drawH * 0.18,
+            0.15,
+            'rgba(0,0,0,0.50)', 'rgba(0,0,0,0.18)', 0.6
+          );
+
+          // 2. Full undercarriage / chassis core shadow (connecting rear to front)
+          const pChassis = toCanvas(740, 612);
+          drawEllipseShadow(
+            pChassis.x, pChassis.y,
+            drawW * 0.22, drawH * 0.09,
+            0.18,
+            'rgba(0,0,0,0.92)', 'rgba(0,0,0,0.55)', 0.55
+          );
+
+          // 3. Front splitter / bumper lip shadow (forward projection)
+          const pLip = toCanvas(980, 655);
+          drawEllipseShadow(
+            pLip.x, pLip.y,
+            drawW * 0.14, drawH * 0.05,
+            0.05,
+            'rgba(0,0,0,0.88)', 'rgba(0,0,0,0.45)', 0.5
+          );
+
+          // 4. Rear-left tire contact patch (wide Cup 2 tire)
+          const pRear = toCanvas(555, 563);
+          // Soft surround
+          drawEllipseShadow(
+            pRear.x, pRear.y,
+            drawW * 0.065, drawH * 0.038,
+            0.10,
+            'rgba(0,0,0,0.85)', 'rgba(0,0,0,0.30)', 0.45
+          );
+          // Tight crisp contact
+          drawEllipseShadow(
+            pRear.x, pRear.y + 1,
+            drawW * 0.042, drawH * 0.022,
+            0.10,
+            'rgba(0,0,0,0.99)', 'rgba(0,0,0,0.85)', 0.65
+          );
+
+          // 5. Front-left tire contact patch (main front wheel closest to camera)
+          const pFrontL = toCanvas(795, 664);
+          // Soft surround extending forward-left
+          drawEllipseShadow(
+            pFrontL.x, pFrontL.y,
+            drawW * 0.08, drawH * 0.045,
+            -0.03,
+            'rgba(0,0,0,0.88)', 'rgba(0,0,0,0.35)', 0.45
+          );
+          // Tight crisp contact
+          drawEllipseShadow(
+            pFrontL.x, pFrontL.y + 1,
+            drawW * 0.055, drawH * 0.026,
+            -0.03,
+            'rgba(0,0,0,0.99)', 'rgba(0,0,0,0.90)', 0.7
+          );
+
+          // 6. Front-right tire contact patch (far front wheel)
+          const pFrontR = toCanvas(1045, 638);
+          drawEllipseShadow(
+            pFrontR.x, pFrontR.y,
+            drawW * 0.05, drawH * 0.03,
+            0.08,
+            'rgba(0,0,0,0.95)', 'rgba(0,0,0,0.60)', 0.55
+          );
+
+          ctx.restore();
+        }
+
         let carAlpha = 1;
         if (pGallery > 0.05 && p3 < 0.8) {
           if (p3 > 0.15) {
@@ -213,6 +313,41 @@ export default function CanvasSequence() {
         ctx.globalAlpha = carAlpha;
         if (carAlpha > 0.01) {
           ctx.drawImage(img, drawX, drawY, drawW, drawH);
+
+          // Subtle contact occlusion on tire base to eliminate "floating" edge
+          if (heroShadowAlpha > 0.01 && frameIdx < 3) {
+            ctx.save();
+            ctx.globalAlpha = heroShadowAlpha * 0.85;
+            
+            const toCanvas = (px, py) => ({
+              x: drawX + (px / 1600) * drawW,
+              y: drawY + (py / 900) * drawH
+            });
+
+            // Contact occlusion line right across front tire base
+            const pFrontL = toCanvas(795, 664);
+            const gradF = ctx.createLinearGradient(0, pFrontL.y - 4, 0, pFrontL.y + 2);
+            gradF.addColorStop(0, 'rgba(0,0,0,0)');
+            gradF.addColorStop(0.7, 'rgba(0,0,0,0.5)');
+            gradF.addColorStop(1, 'rgba(0,0,0,0.85)');
+            ctx.fillStyle = gradF;
+            ctx.beginPath();
+            ctx.ellipse(pFrontL.x, pFrontL.y - 1, drawW * 0.045, drawH * 0.012, -0.03, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Contact occlusion line right across rear tire base
+            const pRear = toCanvas(555, 563);
+            const gradR = ctx.createLinearGradient(0, pRear.y - 3, 0, pRear.y + 2);
+            gradR.addColorStop(0, 'rgba(0,0,0,0)');
+            gradR.addColorStop(0.7, 'rgba(0,0,0,0.45)');
+            gradR.addColorStop(1, 'rgba(0,0,0,0.80)');
+            ctx.fillStyle = gradR;
+            ctx.beginPath();
+            ctx.ellipse(pRear.x, pRear.y - 1, drawW * 0.035, drawH * 0.010, 0.10, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.restore();
+          }
         }
         ctx.globalAlpha = 1.0;
       }

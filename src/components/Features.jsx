@@ -15,7 +15,7 @@ export default function Features() {
             <p className="text-[#9aa0a8] text-sm md:text-base leading-relaxed max-w-[340px]">
               نستخدم أحدث أجهزة الفحص الأصلية VAG ODIS لضمان دقة التشخيص وتحديد الأعطال بدقة متناهية لسيارات مجموعة فولكس فاجن.
             </p>
-            <img src={`${import.meta.env.BASE_URL}assets/clean_images/reel_021_clean.jpg`} alt="Service 1" className="mt-4 w-full max-w-[320px] max-h-[200px] sm:max-h-[240px] object-cover rounded-lg shadow-lg opacity-85" />
+            <img src={`${import.meta.env.BASE_URL}assets/clean_images/reel_021_clean.jpg`} alt="Service 1" className="mt-4 w-full max-w-[320px] max-h-[200px] sm:max-h-[240px] object-cover rounded-xl shadow-2xl opacity-95 hover:opacity-100 border border-white/10 hover:border-[#ff3535]/50 transition-all duration-300 hover:scale-[1.02]" />
           </div>
           </FadeUp>
           
@@ -26,7 +26,7 @@ export default function Features() {
             <p className="text-[#9aa0a8] text-sm md:text-base leading-relaxed max-w-[340px]">
               عمرات كاملة وصيانة دورية لجميع محركات بورش، أودي، وفولكس فاجن بأيدي خبراء متخصصين.
             </p>
-            <img src={`${import.meta.env.BASE_URL}assets/clean_images/reel_022_clean.jpg`} alt="Service 2" className="mt-4 w-full max-w-[320px] max-h-[200px] sm:max-h-[240px] object-cover rounded-lg shadow-lg opacity-85" />
+            <img src={`${import.meta.env.BASE_URL}assets/clean_images/reel_022_clean.jpg`} alt="Service 2" className="mt-4 w-full max-w-[320px] max-h-[200px] sm:max-h-[240px] object-cover rounded-xl shadow-2xl opacity-95 hover:opacity-100 border border-white/10 hover:border-[#ff3535]/50 transition-all duration-300 hover:scale-[1.02]" />
           </div>
           </FadeUp>
         </div>
@@ -43,7 +43,7 @@ export default function Features() {
             <p className="text-[#9aa0a8] text-sm md:text-base leading-relaxed max-w-[340px] mr-auto lg:mr-0 lg:ml-auto">
               برمجة وحدات التحكم الأونلاين (Online Coding) وتحديث السوفت وير لجميع أنظمة السيارة لتواكب أحدث الإصدارات.
             </p>
-            <img src={`${import.meta.env.BASE_URL}assets/clean_images/reel_023_clean.jpg`} alt="Service 3" className="mt-4 w-full max-w-[320px] max-h-[200px] sm:max-h-[240px] object-cover rounded-lg shadow-lg opacity-85 mr-auto lg:mr-0 lg:ml-auto" />
+            <img src={`${import.meta.env.BASE_URL}assets/clean_images/reel_023_clean.jpg`} alt="Service 3" className="mt-4 w-full max-w-[320px] max-h-[200px] sm:max-h-[240px] object-cover rounded-xl shadow-2xl opacity-95 hover:opacity-100 border border-white/10 hover:border-[#ff3535]/50 transition-all duration-300 hover:scale-[1.02] mr-auto lg:mr-0 lg:ml-auto" />
           </div>
           </FadeUp>
 
@@ -54,7 +54,7 @@ export default function Features() {
             <p className="text-[#9aa0a8] text-sm md:text-base leading-relaxed max-w-[340px] mr-auto lg:mr-0 lg:ml-auto">
               نوفر جميع قطع الغيار الأصلية المعتمدة لضمان أداء يدوم طويلاً وراحة بال كاملة في كل رحلة.
             </p>
-            <img src={`${import.meta.env.BASE_URL}assets/clean_images/reel_024_clean.jpg`} alt="Service 4" className="mt-4 w-full max-w-[320px] max-h-[200px] sm:max-h-[240px] object-cover rounded-lg shadow-lg opacity-85 mr-auto lg:mr-0 lg:ml-auto" />
+            <img src={`${import.meta.env.BASE_URL}assets/clean_images/reel_024_clean.jpg`} alt="Service 4" className="mt-4 w-full max-w-[320px] max-h-[200px] sm:max-h-[240px] object-cover rounded-xl shadow-2xl opacity-95 hover:opacity-100 border border-white/10 hover:border-[#ff3535]/50 transition-all duration-300 hover:scale-[1.02] mr-auto lg:mr-0 lg:ml-auto" />
           </div>
           </FadeUp>
         </div>

@@ -6,6 +6,7 @@ import Features from './components/Features';
 import Showcase from './components/Showcase';
 import Gallery from './components/Gallery';
 import Finale from './components/Finale';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTopProgress from './components/ScrollToTopProgress';
 import { MessageCircle } from 'lucide-react';
@@ -26,6 +27,7 @@ export default function App() {
         <Showcase />
         <Gallery />
         <Finale />
+        <Contact />
       </main>
 
       {/* Footer */}
