@@ -163,7 +163,7 @@ export default function CanvasSequence() {
         st.frame = targetFrame;
         st.initialized = true;
       } else {
-        const speed = 0.16;
+        const speed = 0.12; // Lowered for more cinematic floaty smoothness
         st.cx += (targetX - st.cx) * speed;
         st.cy += (targetY - st.cy) * speed;
         st.width += (targetW - st.width) * speed;

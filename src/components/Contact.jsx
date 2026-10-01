@@ -2,6 +2,35 @@ import React from 'react';
 import { MapPin, Phone, Clock, MessageCircle, ExternalLink, Instagram, Facebook, Navigation } from 'lucide-react';
 import FadeUp from './FadeUp';
 
+const BRANCHES = [
+  {
+    id: 'nozha',
+    badge: 'الفرع الرئيسي',
+    isMain: true,
+    region: 'النزهة الجديدة / الهايكستب',
+    name: 'فرع النزهة الجديدة (محور جوزيف تيتو)',
+    address: 'شارع 10 العرايشية - الهايكستب - محور جوزيف تيتو، النزهة الجديدة، القاهرة (أمام محطة بنزين وطنية).',
+    phone: '0100 3326060',
+    phoneClean: '01003326060',
+    mapUrl: 'https://maps.app.goo.gl/vvj13a2jC58SYSpx9',
+    whatsappUrl: `https://wa.me/201003326060?text=${encodeURIComponent('مرحباً، أريد الاستفسار وحجز موعد في فرع النزهة الجديدة')}`,
+    delay: 150,
+  },
+  {
+    id: 'suez',
+    badge: 'فرع طريق السويس',
+    isMain: false,
+    region: 'شرق القاهرة / مدينتي',
+    name: 'فرع طريق السويس (كارتة مدينتي)',
+    address: 'طريق السويس - أمام كارتة مدينتي مباشرة وسوق السيارات الجديد، القاهرة.',
+    phone: '0102 444 7800',
+    phoneClean: '01024447800',
+    mapUrl: 'https://maps.app.goo.gl/pH74i3Qv5FaH1xeTA',
+    whatsappUrl: `https://wa.me/201024447800?text=${encodeURIComponent('مرحباً، أريد الاستفسار وحجز موعد في فرع طريق السويس')}`,
+    delay: 250,
+  },
+];
+
 export default function Contact() {
   return (
     <section
@@ -37,116 +66,86 @@ export default function Contact() {
 
         {/* Branches Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {/* Branch 1: El Nozha El Gedida */}
-          <FadeUp delay={150}>
-            <div className="branch-box h-full p-8 rounded-2xl glass-panel glass-panel-hover border border-white/10 flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-vw-red/10 rounded-full blur-2xl pointer-events-none" />
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-vw-red text-white text-xs font-bold">
-                  <span>الفرع الرئيسي</span>
+          {BRANCHES.map((branch) => (
+            <FadeUp key={branch.id} delay={branch.delay}>
+              <div className="branch-box h-full p-6 sm:p-8 rounded-2xl glass-panel glass-panel-hover border border-white/10 flex flex-col justify-between relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-vw-red/10 rounded-full blur-2xl pointer-events-none" />
+                
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div
+                      className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg text-xs font-bold ${
+                        branch.isMain
+                          ? 'bg-vw-red text-white'
+                          : 'bg-vw-gray text-vw-silver border border-white/10'
+                      }`}
+                    >
+                      <span>{branch.badge}</span>
+                    </div>
+                    <span className="text-xs text-vw-silver">{branch.region}</span>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-black text-white mb-4">
+                    {branch.name}
+                  </h3>
+
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-start gap-3 text-sm text-gray-300">
+                      <MapPin className="w-5 h-5 text-vw-red shrink-0 mt-0.5" />
+                      <span className="leading-relaxed">{branch.address}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3 text-sm text-gray-300">
+                      <Phone className="w-5 h-5 text-vw-red shrink-0" />
+                      <a
+                        href={`tel:${branch.phoneClean}`}
+                        dir="ltr"
+                        className="hover:text-vw-red font-mono font-bold transition-colors"
+                      >
+                        {branch.phone}
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <span className="text-xs text-vw-silver">النزهة الجديدة / الهايكستب</span>
-              </div>
 
-              <h3 className="text-2xl font-black text-white mb-4">
-                فرع النزهة الجديدة (محور جوزيف تيتو)
-              </h3>
-
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3 text-sm text-gray-300">
-                  <MapPin className="w-5 h-5 text-vw-red shrink-0 mt-0.5" />
-                  <span>
-                    شارع 10 العرايشية - الهايكستب - محور جوزيف تيتو، النزهة الجديدة، القاهرة (أمام محطة بنزين وطنية).
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-3 text-sm text-gray-300">
-                  <Phone className="w-5 h-5 text-vw-red shrink-0" />
-                  <a href="tel:01003326060" className="hover:text-vw-red font-mono font-bold transition-colors">
-                    0100 3326060
+                {/* Actions: Google Maps, WhatsApp, Call Us */}
+                <div className="pt-6 border-t border-white/10 space-y-3">
+                  {/* Google Maps Directions */}
+                  <a
+                    href={branch.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-vw-gray hover:bg-vw-lightgray text-white text-xs sm:text-sm font-bold border border-white/10 hover:border-vw-red/40 transition-all duration-200 group"
+                  >
+                    <Navigation className="w-4 h-4 text-vw-red group-hover:scale-110 transition-transform" />
+                    <span>الاتجاهات على خرائط جوجل</span>
+                    <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-white transition-colors" />
                   </a>
-                </div>
-              </div>
-            </div>
 
-            <div className="pt-6 border-t border-white/10 flex flex-wrap gap-4">
-              <a
-                href="https://maps.app.goo.gl/yoAf1QSfcysQBp2x7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-vw-gray hover:bg-vw-lightgray text-white text-xs sm:text-sm font-bold border border-white/10 transition-colors"
-              >
-                <Navigation className="w-4 h-4 text-vw-red" />
-                <span>الاتجاهات على خرائط جوجل</span>
-                <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
-              </a>
+                  {/* WhatsApp and Call Buttons */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <a
+                      href={branch.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366] text-[#25D366] hover:text-white text-xs sm:text-sm font-bold border border-[#25D366]/30 transition-all duration-200 group"
+                    >
+                      <MessageCircle className="w-4 h-4 text-[#25D366] group-hover:text-white transition-colors" />
+                      <span>تواصل واتساب</span>
+                    </a>
 
-              <a
-                href="tel:01003326060"
-                className="flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-vw-red hover:bg-vw-redHover text-white text-xs sm:text-sm font-bold transition-colors shadow-lg shadow-vw-red/30"
-              >
-                <Phone className="w-4 h-4" />
-                <span>اتصال مباشر</span>
-              </a>
-            </div>
-            </div>
-          </FadeUp>
-
-          {/* Branch 2: Suez Road (Madinaty) */}
-          <FadeUp delay={250}>
-            <div className="branch-box h-full p-8 rounded-2xl glass-panel glass-panel-hover border border-white/10 flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-vw-red/10 rounded-full blur-2xl pointer-events-none" />
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-vw-gray text-vw-silver border border-white/10 text-xs font-bold">
-                    <span>فرع طريق السويس</span>
-                  </div>
-                  <span className="text-xs text-vw-silver">شرق القاهرة / مدينتي</span>
-                </div>
-
-                <h3 className="text-2xl font-black text-white mb-4">
-                  فرع طريق السويس (كارتة مدينتي)
-                </h3>
-
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3 text-sm text-gray-300">
-                    <MapPin className="w-5 h-5 text-vw-red shrink-0 mt-0.5" />
-                    <span>
-                      طريق السويس - بالقرب من كارتة مدينتي وسوق السيارات الجديد، القاهرة.
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-3 text-sm text-gray-300">
-                    <Phone className="w-5 h-5 text-vw-red shrink-0" />
-                    <a href="tel:01024447800" className="hover:text-vw-red font-mono font-bold transition-colors">
-                      01024447800
+                    <a
+                      href={`tel:${branch.phoneClean}`}
+                      className="flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-vw-red hover:bg-vw-redHover text-white text-xs sm:text-sm font-bold shadow-lg shadow-vw-red/30 transition-all duration-200 group"
+                    >
+                      <Phone className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                      <span>اتصل بنا</span>
                     </a>
                   </div>
                 </div>
               </div>
-
-              <div className="pt-6 border-t border-white/10 flex flex-wrap gap-4">
-                <a
-                  href="https://wa.me/201024447800"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-vw-gray hover:bg-vw-lightgray text-white text-xs sm:text-sm font-bold border border-white/10 transition-colors"
-                >
-                  <MessageCircle className="w-4 h-4 text-green-500" />
-                  <span>حجز عبر واتساب الفرع</span>
-                </a>
-
-                <a
-                  href="tel:01024447800"
-                  className="flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-vw-red hover:bg-vw-redHover text-white text-xs sm:text-sm font-bold transition-colors shadow-lg shadow-vw-red/30"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span>اتصال مباشر</span>
-                </a>
-              </div>
-            </div>
-          </FadeUp>
+            </FadeUp>
+          ))}
         </div>
 
         {/* Social and Quick Reach Bar */}

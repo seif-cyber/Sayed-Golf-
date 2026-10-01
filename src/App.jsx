@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import CanvasSequence from './components/CanvasSequence';
 import Hero from './components/Hero';
@@ -11,6 +12,29 @@ import ScrollToTopProgress from './components/ScrollToTopProgress';
 import { MessageCircle } from 'lucide-react';
 
 export default function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-[#070404] text-white selection:bg-vw-red selection:text-white" dir="rtl">
       {/* Floating Header */}
