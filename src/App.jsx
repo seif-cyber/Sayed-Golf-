@@ -4,6 +4,7 @@ import CanvasSequence from './components/CanvasSequence';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Showcase from './components/Showcase';
+import Gallery from './components/Gallery';
 import Finale from './components/Finale';
 import Footer from './components/Footer';
 import ScrollToTopProgress from './components/ScrollToTopProgress';
@@ -23,6 +24,7 @@ export default function App() {
         <Hero />
         <Features />
         <Showcase />
+        <Gallery />
         <Finale />
       </main>
 

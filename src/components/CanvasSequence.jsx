@@ -91,6 +91,7 @@ export default function CanvasSequence() {
 
       const featuresSection = document.getElementById('features');
       const showcaseSection = document.getElementById('showcase');
+      const gallerySection = document.getElementById('gallery');
       const finaleSection = document.getElementById('finale');
 
       // Progress calculations between sections
@@ -102,6 +103,7 @@ export default function CanvasSequence() {
 
       const p1 = smoothstep(calcProgress(featuresSection));
       const p2 = smoothstep(calcProgress(showcaseSection));
+      const pGallery = smoothstep(calcProgress(gallerySection));
       const p3 = smoothstep(calcProgress(finaleSection));
 
       // Calculate target screen position and width by blending slot rects
@@ -197,7 +199,22 @@ export default function CanvasSequence() {
         const drawX = st.cx * dpr - drawW / 2;
         const drawY = st.cy * dpr - drawH / 2;
 
-        ctx.drawImage(img, drawX, drawY, drawW, drawH);
+        let carAlpha = 1;
+        if (pGallery > 0.05 && p3 < 0.8) {
+          if (p3 > 0.15) {
+            // Fading back in for finale
+            carAlpha = clamp((p3 - 0.15) / 0.5, 0, 1);
+          } else {
+            // Fading out as user enters gallery
+            carAlpha = clamp(1 - (pGallery - 0.05) / 0.35, 0, 1);
+          }
+        }
+
+        ctx.globalAlpha = carAlpha;
+        if (carAlpha > 0.01) {
+          ctx.drawImage(img, drawX, drawY, drawW, drawH);
+        }
+        ctx.globalAlpha = 1.0;
       }
 
       animId = requestAnimationFrame(render);
